@@ -1,0 +1,130 @@
+//Exercices 1 et 2
+
+
+/**
+* Classe illustrant le passage par valeur sur les attributs de type primitif
+* @author Pechoux
+* @version 1.0
+*/
+public class PassageParVal{
+
+	public static void main(String[] args){
+
+	double one =1.0;
+	System.out.println("avant : "+one);
+	divise(one);
+	System.out.println("avant : "+one);
+	}
+
+	/**
+	*M?thode de division
+	*@param d un double ? diviser
+	*@return d/2
+	*/
+	public static void divise(double d){
+		d=d/2.0;
+		System.out.println("divise : "+d);
+	}
+
+
+}
+
+
+/**
+* Classe illustrant le passage par valeur de r?f?rence sur les attributs de type r?f?rence
+* @author Pechoux
+* @version 1.0
+*/
+
+public class PassageParRef{
+	/**
+	* Classe imbriqu?e repr?sentant un point de coordonn?es
+	*/
+
+	class Point{
+		int x;
+		int y;
+	public Point(int x, int y){
+		this.x=x;
+		this.y=y;
+	}
+	
+	/**
+	*M?thode changeant l'abscisse d'un point
+	*@param p un Point
+	*@return void
+	*/
+	static void changer(Point p){
+		p.x=0;
+		p=null;
+	}
+
+	public static void main(String[] args){
+		Point p = new Point(12,12);
+		System.out.println("Abscisse : "+p.x+" Ordonnee : "+p.y);
+		changer(p);
+		System.out.println("Abscisse : "+p.x+" Ordonnee : "+p.y);
+	}
+}
+
+//Exercice 3
+
+import java.util.*;
+public class Test{
+	public static void main(String[] args){
+		float x = 0.3f;
+		float y = 0.6f;
+		float z = 0.9f;
+		System.out.println(x+y);
+		System.out.println(z);	
+	}
+}
+
+
+
+//Exercice 4
+import java.util.Date;
+
+public class Patate{
+public String espece;
+public Date CalendarPlantation;
+private Date CalendarRecolte;
+	public Patate(String espece, Date CalendarPlantation, Date CalendarRecolte){
+		this.espece=espece;
+		this.CalendarPlantation= CalendarPlantation;
+		this.CalendarRecolte=CalendarRecolte;
+	}
+
+	public void decalage(){
+	CalendarRecolte.setYear(CalendarRecolte.getYear()+1);
+	}
+
+}
+
+
+import java.util.Date;
+import java.lang.reflect.*;
+
+public class Test{
+
+	public static void main(String[] args){
+	Date d=new Date();
+	Date e=new Date();
+	Patate frite = new Patate("Vico",d,e);
+	Class c = frite.getClass();
+	Field[] f= c.getFields();
+	for(int i=0;i<f.length;i++){
+		System.out.println(f[i].getName());
+	}
+	Method[] m  = c.getMethods();
+	System.out.println("-----");
+	for(int i=0;i<m.length;i++){
+		System.out.println(m[i].getName()+" : "+m[i].getReturnType());
+	}
+
+	}
+
+
+}
+
+//Exercice 5 (cf. cours)
